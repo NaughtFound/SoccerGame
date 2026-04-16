@@ -3,8 +3,13 @@ extends Node
 
 signal screen_transition_requested(new_screen: SoccerGame.ScreenType, data: ScreenData)
 
+@export var music: MusicPlayer.Music
+
 var game: SoccerGame = null
 var data: ScreenData = null
+
+func _enter_tree() -> void:
+	MusicPlayer.play(music)
 
 func setup(_game: SoccerGame, _data: ScreenData) -> void:
 	game = _game

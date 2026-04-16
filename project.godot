@@ -21,6 +21,7 @@ DataLoader="*uid://behohr7rdudlu"
 GameManager="*uid://d10kn1541qkxo"
 GameEvents="*uid://dl1pfwifw2inp"
 SoundPlayer="*uid://dryllbwu15shm"
+MusicPlayer="*uid://kiuygula7wiq"
 
 [debug]
 

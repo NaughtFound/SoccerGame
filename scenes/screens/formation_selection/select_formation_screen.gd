@@ -29,6 +29,7 @@ func _init() -> void:
 
 func _ready() -> void:
 	place_formations()
+	set_default_formations()
 	place_selectors()
 	
 func _process(_delta: float) -> void:
@@ -82,6 +83,14 @@ func place_formations() -> void:
 		formaiton_style.position = ANCHOR_POINT+(FLAG_SIZE+padding)*idx
 		formaiton_style.z_index = 1
 		formations_container.add_child(formaiton_style)
+
+func set_default_formations() -> void:
+	for control_scheme in GameManager.control_schemes.values():
+		var side: Team.TeamSide = SIDES[control_scheme]
+		var country := GameManager.countries[side]
+		var i := DataLoader.formations[country] as int
+		var idx := Vector2(i%int(ITEMS_PER_ROW), int(i/ITEMS_PER_ROW))
+		selection[control_scheme] = idx
 
 func place_selectors() -> void:
 	for control_scheme in GameManager.control_schemes.values():

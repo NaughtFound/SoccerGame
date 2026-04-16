@@ -1,17 +1,15 @@
 class_name WorldScreen
 extends Screen
 
-const GAMEOVER_DURATION := 5000
+const GAMEOVER_DURATION := 6000
 
 var time_since_game_over: int
 var is_gameover: bool
 
-func _enter_tree() -> void:
-	is_gameover = false
-	GameEvents.game_over.connect(on_game_over.bind())
 
 func _ready() -> void:
 	is_gameover = false
+	GameEvents.game_over.connect(on_game_over.bind())
 	GameManager.reset()
 
 func _process(_delta: float) -> void:
