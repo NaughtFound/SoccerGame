@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://dgn8uh2jf357g"]
+
+[ext_resource type="Texture2D" uid="uid://o3gf8uw3ivix" path="res://assets/art/ui/flags/flag-placeholder.png" id="1_7xw31"]
+[ext_resource type="Script" uid="uid://bymxalopjjmxn" path="res://scenes/screens/formation_selection/formation_style.gd" id="1_cy6lh"]
+
+[node name="FormationStyle" type="Control" unique_id=849007678]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cy6lh")
+
+[node name="Background" type="TextureRect" parent="." unique_id=177746358]
+layout_mode = 0
+offset_right = 22.0
+offset_bottom = 14.0
+scale = Vector2(2, 2)
+texture = ExtResource("1_7xw31")
+stretch_mode = 2
+
+[node name="Label" type="Label" parent="." unique_id=2147026450]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(44, 14)
+layout_mode = 1
+offset_top = 4.0
+offset_right = 44.0
+offset_bottom = 18.0
+theme_override_colors/font_color = Color(0.80784315, 0.80784315, 0.80784315, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
