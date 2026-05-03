@@ -21,10 +21,13 @@ var player_positions: Dictionary[Player, Dictionary]
 
 var should_check_kickoff_ready: bool
 
+var player_in_control: Player
+
 func _init() -> void:
 	should_check_kickoff_ready = false
 	GameEvents.team_reset.connect(on_team_reset.bind())
 	player_positions = {}
+	player_in_control = null
 
 func _ready() -> void:
 	country = GameManager.countries[side]
@@ -138,3 +141,33 @@ func check_team_ready_for_kickoff() -> void:
 			return
 	GameEvents.team_kickoff_ready.emit(self)
 	should_check_kickoff_ready = false
+	
+func change_player_in_control(player: Player = null) -> void:
+	if player_in_control != null:
+		player_in_control.set_control_scheme(Player.ControlScheme.CPU)
+	if player != null:
+		player.set_control_scheme(control_scheme)
+	player_in_control = player
+	
+func set_nearest_player_in_control() -> void:
+	var players := player_positions.keys()
+	players.sort_custom(
+		func (p1: Player, p2: Player):
+			var p1_position := p1.position
+			var p1_distance := p1_position.distance_squared_to(ball.position)
+			
+			var p2_position := p2.position
+			var p2_distance := p2_position.distance_squared_to(ball.position)
+			
+			return p1_distance < p2_distance
+	)
+	for player: Player in players:
+		if player != player_in_control:
+			change_player_in_control(player)
+			break
+
+func has_ball() -> bool:
+	for player: Player in player_positions.keys():
+		if player.has_ball():
+			return true
+	return false

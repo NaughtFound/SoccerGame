@@ -10,11 +10,11 @@ var dribble_time: float
 func _enter_tree() -> void:
 	assert(carrier != null)
 	dribble_time = 0
-	carrier.change_control_scheme()
+	carrier.team.change_player_in_control(carrier)
 	GameEvents.ball_carried.emit(carrier)
 
 func _exit_tree() -> void:
-	carrier.change_control_scheme()
+	carrier.team.change_player_in_control()
 	GameEvents.ball_released.emit()
 
 func _process(delta: float) -> void:

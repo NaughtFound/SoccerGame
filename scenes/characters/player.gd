@@ -217,12 +217,9 @@ func can_carry_ball() -> bool:
 
 func is_ready_for_kickoff() -> bool:
 	return current_state != null and current_state.is_ready_for_kickoff()
-
-func change_control_scheme() -> void:
-	if has_ball():
-		control_scheme = team.control_scheme
-	else:
-		control_scheme = ControlScheme.CPU
+	
+func set_control_scheme(scheme: ControlScheme) -> void:
+	control_scheme = scheme
 	set_control_texture()
 
 func on_team_scored(_team: Team) -> void:

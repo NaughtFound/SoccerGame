@@ -6,6 +6,7 @@ func _process(_delta: float) -> void:
 		agent.make_decisions()
 	else:
 		handle_human_movement()
+	change_in_control_player()
 	player.set_movement_animation()
 
 func handle_human_movement() -> void:
@@ -30,3 +31,9 @@ func handle_human_movement() -> void:
 	elif KeyUtils.is_action_just_pressed(player.control_scheme, KeyUtils.Action.PASS):
 		if player.has_ball():
 			state_transition(Player.State.PASS)
+
+func change_in_control_player() -> void:
+	if player.team.has_ball():
+		return
+	if KeyUtils.is_action_just_pressed(player.team.control_scheme, KeyUtils.Action.PASS):
+		player.team.set_nearest_player_in_control()
